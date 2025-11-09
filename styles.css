@@ -233,7 +233,7 @@ a {
 /* Orbites des planètes */
 .planet {
     background: transparent;
-    border: 2px solid gray(255, 255, 255, 0.1);
+    border: 2px solid rgba(128, 128, 128, 0.4);
     animation: animate 10s linear infinite;
 }
 
@@ -331,8 +331,8 @@ a {
     top: -6px;
     left: 50%;
     transform: translateX(-50%);
-    background: gray(232, 212, 160, 0.4);
-    border: 2px solid gray(232, 212, 160, 0.6);
+    background: rgba(232, 212, 160, 0.4);
+    border: 2px solid rgba(232, 212, 160, 0.6);
 }
 
 /* Uranus */
