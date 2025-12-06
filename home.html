@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>habibweb</title>
+    <style>
+        @font-face {
+            font-family: Outfit;
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url(/_assets/fonts/outfit-latin-extended.woff2) format("woff2");
+            unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        @font-face {
+            font-family: Outfit;
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url(/_assets/fonts/outfit-latin.woff2) format("woff2");
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+                :root {
+    --bg: #dcfce7; 
+    --color: #052e16;
+    --color-emphasis: #16a34a;
+    }
+
+        * {
+            margin: 0;
+        }
+
+        html {
+            background-color: var(--bg); 
+            color: var(--color); 
+            font-family: Outfit, sans-serif;
+            line-height: 1.4;
+        }
+
+        body, html {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        main {
+            display: grid;
+            max-width: 100em;
+            margin-inline: auto;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        main > section {
+            display: grid;
+            container-type: inline-size;
+            padding: calc(3vw + .5em);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.2;
+        }
+
+        .header__nav {
+            display: flex;
+            justify-content: end;
+            gap: calc(1cqw + .5em);
+            padding: 1em;
+            font-size: calc(.25cqw + 1em);
+        }
+
+        .header__link {
+            color: var(--color); 
+            text-decoration: none;
+            transition: color .1s ease-out;
+            display: flex;
+            align-items: center;
+        }
+
+        .header__link:hover {
+            color: var(--color-emphasis); 
+        }
+
+        .header__home {
+            margin-right: auto;
+        }
+
+        @media (width >= 700px) and (min-height: 700px) {
+            .header {
+                position: absolute;
+                z-index: 1;
+                inset: 0;
+                bottom: auto;
+            }
+        }
+
+        .hero {
+            display: grid;
+            gap: 1em;
+            align-self: stretch;
+        }
+
+        .hero__heading {
+            font-weight: 300;
+            font-size: clamp(1.75em, calc(4cqw + .5em), 4em);
+            margin: 0;
+            text-wrap: pretty;
+        }
+
+        .hero__heading b {
+            font-weight: 700;
+            color: var(--color-emphasis); 
+        }
+
+        .hero__subtitle {
+            font-size: 1.2em;
+            margin-top: 1em;
+            opacity: 0.9;
+        }
+
+        @media (orientation: portrait) {
+            .hero {
+                align-content: start;
+                grid-template-rows: auto auto;
+            }
+            .solar-system-container {
+                margin-inline: auto;
+                max-height: 90%;
+                max-width: 80%;
+                width: 100%;
+            }
+        }
+
+        @media (orientation: landscape) {
+            .hero {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                gap: calc(4cqw + .5em);
+                align-items: center;
+            }
+        }
+
+        /* === SYSTÈME SOLAIRE === */
+        .solar-system-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 400px;
+            opacity: 0;
+            animation: fadeInFloat 0.8s ease-in-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .space {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .space span {
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .sun {
+            width: 40px;
+            height: 40px;
+            background: #ff8b17;
+            box-shadow: 0 0 10px #ff8b17, 0 0 20px #ff8b17, 0 0 40px #ff8b17, 0 0 60px #ff8b17;
+            z-index: 10;
+        }
+
+        .planet {
+            background: transparent;
+            border: 2px solid rgba(0, 0, 0, 0.15); /* Lignes plus subtiles sur fond clair */
+            animation: animate 5s linear infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .planet1 { width: 70px; height: 70px; }
+        .planet2 { width: 100px; height: 100px; }
+        .planet3 { width: 140px; height: 140px; }
+        .planet4 { width: 180px; height: 180px; animation-duration: 7s; }
+        .planet5 { width: 220px; height: 220px; animation-duration: 9s; }
+        .planet6 { width: 280px; height: 280px; animation-duration: 11s; }
+        .planet7 { width: 330px; height: 330px; animation-duration: 13s; }
+        .planet8 { width: 380px; height: 380px; animation-duration: 15s; }
+
+        .space span::before,
+        .space span::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .planet1::before {
+            width: 8px;
+            height: 8px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #6b7280;
+        }
+
+        .planet2::before {
+            width: 12px;
+            height: 12px;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ea580c;
+        }
+
+        .planet3::before {
+            width: 14px;
+            height: 14px;
+            top: 50%;
+            right: -7px;
+            transform: translateY(-50%);
+            background: #0284c7;
+        }
+
+        .planet4::before {
+            width: 10px;
+            height: 10px;
+            bottom: 50%;
+            left: -5px;
+            transform: translateY(50%);
+            background: #dc2626;
+        }
+
+        .planet5::before {
+            width: 24px;
+            height: 24px;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d97706;
+        }
+
+        .planet6::before {
+            width: 22px;
+            height: 22px;
+            top: -11px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #a16207;
+        }
+
+        .planet6::after {
+            width: 34px;
+            height: 8px;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(161, 98, 7, 0.2);
+            border: 2px solid rgba(161, 98, 7, 0.4);
+        }
+
+        .planet7::before {
+            width: 18px;
+            height: 18px;
+            bottom: 50%;
+            right: -9px;
+            transform: translateY(50%);
+            background: #0ea5e9;
+        }
+
+        .planet8::before {
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            right: -8px;
+            transform: translateY(-50%);
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="header__nav">
+            <a href="/home.html" class="header__link header__home">habib portfolio</a>
+            <a href="/aboutme.html" class="header__link">about me</a>
+            <a href="/work.html" class="header__link">work</a>
+            <a href="mailto:fallhabib659@gmail.com" class="header__link">contact</a>
+            <a href="https://github.com/habibfl" class="header__link">github</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="solar-system-container">
+                <div class="space">
+                    <span class="sun"></span>
+                    <span class="planet planet1"></span>
+                    <span class="planet planet2"></span>
+                    <span class="planet planet3"></span>
+                    <span class="planet planet4"></span>
+                    <span class="planet planet5"></span>
+                    <span class="planet planet6"></span>
+                    <span class="planet planet7"></span>
+                    <span class="planet planet8"></span>
+                </div>
+            </div>
+            <h1 class="hero__heading">
+                Fusion de
+                <b>l'art</b> et la <b>technique</b> en digital <b>mémorable</b>.
+            </h1>
+        </section>
+    </main>
+</body>
+</html>

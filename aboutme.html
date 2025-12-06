@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - habibweb</title>
+    <style>
+        @font-face {
+            font-family: Outfit;
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url(/_assets/fonts/outfit-latin-extended.woff2) format("woff2");
+            unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        @font-face {
+            font-family: Outfit;
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url(/_assets/fonts/outfit-latin.woff2) format("woff2");
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+            :root {
+    --bg: #dcfce7;
+    --color: #052e16;
+    --color-emphasis: #16a34a;
+    }
+
+
+        * {
+            margin: 0;
+        }
+
+        html {
+            background-color: var(--bg); 
+            color: var(--color); 
+            font-family: Outfit, sans-serif;
+            line-height: 1.4;
+        }
+
+        body, html {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        main {
+            display: grid;
+            max-width: 100em;
+            margin-inline: auto;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        main > section {
+            display: grid;
+            container-type: inline-size;
+            padding: calc(3vw + .5em);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.2;
+        }
+
+        img, video {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .header__nav {
+            display: flex;
+            justify-content: end;
+            gap: calc(1cqw + .5em);
+            padding: 1em;
+            font-size: calc(.25cqw + 1em);
+        }
+
+        .header__link {
+            color: var(--color);
+            text-decoration: none;
+            transition: color .1s ease-out;
+            display: flex;
+            align-items: center;
+        }
+
+        .header__link:hover {
+            color: var(--color-emphasis);
+        }
+
+        .header__home {
+            margin-right: auto;
+        }
+
+        .page-heading {
+            font-weight: 700;
+            font-size: clamp(2.5em, calc(20cqw + 1em), 12em);
+            text-wrap: pretty;
+            margin-bottom: 1em;
+        }
+
+        .intro-text {
+            font-size: clamp(1.2em, calc(2cqw + .75em), 1.75em);
+            max-width: 40em;
+            margin-bottom: 3em;
+        }
+
+        .intro-text b {
+            color: var(--color-emphasis);
+            font-weight: 700;
+        }
+
+        .intro-text .highlight {
+            color: var(--color-emphasis);
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: clamp(1.5em, calc(10cqw + 1em), 8em);
+            font-weight: 600;
+            margin-bottom: 2em;
+        }
+
+        .listings {
+            list-style: none;
+            display: grid;
+            gap: 2.5em;
+            margin-block: 4em;
+            padding: 0;
+        }
+
+        .card {
+            display: grid;
+            gap: .75em;
+            position: relative;
+            grid-template-areas: "cover" "title" "info";
+        }
+
+        .card__title {
+            font-size: clamp(1.5em, calc(2cqw + 1em), 3em);
+            grid-area: title;
+            text-wrap: pretty;
+        }
+
+        .card__description {
+            font-size: clamp(1em, calc(2cqw + .75em), 1.5em);
+        }
+
+        .card__info {
+            grid-area: info;
+            row-gap: inherit;
+            display: grid;
+        }
+
+        .card__cover {
+            grid-area: cover;
+            display: flex;
+        }
+
+        .card__cover picture {
+            display: flex;
+            border-radius: .5cqw;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .card__cover img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .card__link {
+            color: var(--color);
+            text-decoration: none;
+            transition: color .2s ease-out;
+        }
+
+        .card__link:hover {
+            color: var(--color-emphasis);
+        }
+
+        .card__link::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+        }
+
+        @container (width <= 600px) {
+            .card__cover {
+                margin-bottom: .5em;
+            }
+        }
+
+        @container (width > 600px) {
+            .card {
+                grid-template-columns: 1fr 2fr;
+                align-items: start;
+                grid-template-areas: "title title" "cover info";
+                column-gap: 1.5em;
+            }
+        }
+
+        @container (width > 800px) {
+            .card {
+                grid-template-areas: "cover title" "cover info";
+                align-items: center;
+                row-gap: 1em;
+                column-gap: clamp(2em, calc(2cqw + .5em), 3em);
+            }
+            .card__title {
+                align-self: end;
+            }
+            .card__info {
+                align-self: start;
+            }
+        }
+
+        @container (width > 1000px) {
+            .card {
+                grid-template-columns: 2fr 3fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .card:hover .card__cover--article,
+            .card:hover .card__screenshot {
+                transform: scale(1.03) rotate(-.75deg) translateY(-2px);
+            }
+        }
+
+        .card__cover--article {
+            transition: transform .2s ease-out;
+        }
+
+        .card__screenshots {
+            position: relative;
+            --rot-mod: 1;
+            width: 100%;
+            max-width: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card__screenshot {
+            border-radius: 1rem;
+            background: hsl(var(--hue), 20%, 12%);
+            border: 1px solid hsl(var(--hue), 60%, 40%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: rotate .2s ease-out, translate .2s ease-out, scale .2s ease-out, transform .2s ease-out;
+            padding: 1.5rem;
+            width: 100%;
+            aspect-ratio: 1;
+        }
+
+        .card__screenshot picture {
+            border-radius: .25rem;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card__screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .card__screenshots:has(.card__screenshot--small) .card__screenshot--large {
+            width: 80%;
+            rotate: calc(-1.5deg * var(--rot-mod));
+        }
+
+        .card__screenshot--small {
+            position: absolute;
+            right: 5%;
+            width: 20%;
+            bottom: -2%;
+            rotate: calc(6deg * var(--rot-mod));
+            padding: 1.5%;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .card:hover .card__screenshots {
+                --rot-mod: 1.5;
+            }
+            .card:hover .card__screenshot {
+                translate: 0 -5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="header__nav">
+            <a href="/home.html" class="header__link header__home">habib portfolio</a>
+            <a href="/aboutme.html" class="header__link">about me</a>
+            <a href="/work.html" class="header__link">work</a>
+            <a href="mailto:fallhabib659@gmail.com" class="header__link">contact</a>
+            <a href="https://github.com/habibfl" class="header__link">github</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1 class="page-heading">About Me</h1>
+
+            <p class="intro-text">
+                <b>Étudiant</b> <span class="highlight">en développement web</span><br>
+                Je m'appelle Habib et je suis étudiant en développement web. J'ai créé ce portfolio pour rassembler tous mes projets, suivre ma progression et montrer ce que je suis capable de réaliser.
+            </p>
+
+            <h2 class="section-title">Mes compétences</h2>
+            
+            <ul class="listings">
+                <!-- HTML -->
+                <li>
+                    <article class="card">
+                        <div class="card__cover">
+                            <div class="card__screenshots">
+                                <div class="card__screenshot card__screenshot--large">
+                                    <picture>
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 Logo" loading="lazy" decoding="async">
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="card__title">
+                            <a href="#" class="card__link">HTML</a>
+                        </h2>
+
+                        <div class="card__info">
+                            <p class="card__description">Maîtrise du langage de balisage HTML pour structurer le contenu web de manière sémantique et accessible.</p>
+                            <p>Structure sémantique, accessibilité, formulaires, intégration multimédia</p>
+                        </div>
+                    </article>
+                </li>
+
+                <!-- CSS -->
+                <li>
+                    <article class="card">
+                        <div class="card__cover">
+                            <div class="card__screenshots">
+                                <div class="card__screenshot card__screenshot--large">
+                                    <picture>
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 Logo" loading="lazy" decoding="async">
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="card__title">
+                            <a href="#" class="card__link">CSS</a>
+                        </h2>
+
+                        <div class="card__info">
+                            <p class="card__description">Expertise en CSS pour créer des interfaces modernes, responsives et esthétiques avec des animations fluides.</p>
+                            <p>Flexbox, Grid, animations, responsive design, variables CSS</p>
+                        </div>
+                    </article>
+                </li>
+
+                <!-- JavaScript -->
+                <li>
+                    <article class="card">
+                        <div class="card__cover">
+                            <div class="card__screenshots">
+                                <div class="card__screenshot card__screenshot--large">
+                                    <picture>
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript Logo" loading="lazy" decoding="async">
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="card__title">
+                            <a href="#" class="card__link">JavaScript</a>
+                        </h2>
+
+                        <div class="card__info">
+                            <p class="card__description">Compétences en JavaScript pour créer des interactions dynamiques et des fonctionnalités avancées côté client.</p>
+                            <p>DOM manipulation, événements, API, ES6+, asynchrone</p>
+                        </div>
+                    </article>
+                </li>
+
+                <!-- PHP -->
+                <li>
+                    <article class="card">
+                        <div class="card__cover">
+                            <div class="card__screenshots">
+                                <div class="card__screenshot card__screenshot--large">
+                                    <picture>
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP Logo" loading="lazy" decoding="async">
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="card__title">
+                            <a href="#" class="card__link">PHP</a>
+                        </h2>
+
+                        <div class="card__info">
+                            <p class="card__description">Connaissance du langage PHP pour développer des applications web dynamiques côté serveur.</p>
+                            <p>Programmation orientée objet, formulaires, sessions, sécurité</p>
+                        </div>
+                    </article>
+                </li>
+
+                <!-- MySQL -->
+                <li>
+                    <article class="card">
+                        <div class="card__cover">
+                            <div class="card__screenshots">
+                                <div class="card__screenshot card__screenshot--large">
+                                    <picture>
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL Logo" loading="lazy" decoding="async">
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="card__title">
+                            <a href="#" class="card__link">MySQL</a>
+                        </h2>
+
+                        <div class="card__info">
+                            <p class="card__description">Maîtrise des bases de données MySQL pour stocker et gérer efficacement les données d'applications web.</p>
+                            <p>Requêtes SQL, jointures, optimisation, conception de bases de données</p>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
